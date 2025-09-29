@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript break</h1>
+<h2>The break Statement in a Loop</h2>
+
+
+<p id="demo"></p>
+
+<script>
+    let options = { 
+    weekday: 'long',   // "Monday" - 'long'|'short'|'narrow'
+    year: 'numeric',   // "2025" - 'numeric'|'2-digit'
+    month: 'long',     // "September" - 'long'|'short'|'numeric'|'2-digit'|'narrow'
+    day: 'numeric',    // "19" - 'numeric'|'2-digit'
+    hour: '2-digit',   // "05 PM" - 'numeric'|'2-digit'
+    minute: '2-digit', // "04" - 'numeric'|'2-digit'
+    second: '2-digit'  // "09" - 'numeric'|'2-digit'
+    };
+    // timeZone: 'UTC'|'America/New_York'|...
+    // hour12: true|false
+    // timeZoneName: 'short'|'long'
+    
+    let fullDate2 = new Date().toLocaleDateString("en-US", options);
+
+    document.getElementById("demo").innerHTML = "Today is " + fullDate2;
+</script>
+</body>
+</html>
