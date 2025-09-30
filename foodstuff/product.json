@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "productName": "Refined Local Rice",
+      "kongoPrice": "&#8358;2,300",
+      "bagPrice": "&#8358;66,500",
+      "bagWeight": "50kg",
+      "image": "rice1.jpg"
+    },
+    {
+      "productName": "Foreign Rice",
+      "kongoPrice": "From &#8358;2,300 to &#8358;2,900"
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ]
+}
