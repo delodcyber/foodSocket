@@ -73,7 +73,7 @@ a {
     grid-template-areas: "one two three four five";
     grid-template-columns: 2fr 2fr 2fr 2fr 5fr;
     gap: 5px;
-    margin: 15px 25px 5px 200px;
+    list-style: none;
 }
 
 ul li a {
