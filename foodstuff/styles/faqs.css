@@ -1,0 +1,38 @@
+.faqs-container h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 5rem;
+}
+.faqs-section {
+    display: grid;
+    grid-template-areas: "membership order-payment";
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 10px;
+    margin: 40px 50px 20px 50px;
+}
+.membership {
+    grid-area: membership;
+    display: flex;
+    flex-direction: column;
+}
+.membership h2, .order-payment h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: rgb(232, 184, 184);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0rem 10rem 2rem 10rem;
+}
+.order-payment {
+    grid-area: order-payment;
+    display: flex;
+    flex-direction: column;
+}
+.faq-item {
+    padding: 2px 5px 2px 20px;
+    margin: 10px;
+    background-color:rgb(210, 242, 178);
+    border-radius: 20px;
+
+}
