@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="/foodstuff/styles/homepage.css">
+    <link rel="stylesheet" href="/foodstuff/styles/about.css">
     <title>Homepage</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,17 +43,15 @@
                 </div>
             </div>
         </div>
-        <div class="header-lower">
-            <nav class="menu">
-                <ul>
-                    <button class="sublink"><a href="/foodstuff/homepage.html">Home</a></button>
-                    <button class="sublink"><a href="/foodstuff/product.html">Products</a></button>
-                    <button class="sublink"><a href="/foodstuff/questions.html">FAQs</a></button>
-                    <button class="sublink"><a href="/foodstuff/about.html">About Us</a></button>
-                    <button class="sublink"><p>Hotline: 09131839726</p></button>
-                </ul>
-            </nav>
-        </div>
+        <nav class="menu" aria-label="Main navigation">
+        <ul>
+            <li><a class="sublink" href="/foodstuff/homepage.html" aria-current="page">Home</a></li>
+            <li><a class="sublink" href="/foodstuff/product.html">Products</a></li>
+            <li><a class="sublink" href="/foodstuff/faqs.html">FAQs</a></li>
+            <li><a class="sublink" href="/foodstuff/about.html">About Us</a></li>
+            <li class="hotline">Hotline: <a href="tel:09131839726" class="phone">09131839726</a></li>
+        </ul>
+        </nav>
     </div>
     <div class="banner">
         <img src="/foodstuff/images/bannerhome.jpeg" alt="Homepage_Banner" class="banner_image">
@@ -63,24 +62,49 @@
             <div class="product-card">
                 <img src="/foodstuff/images/rice.jpg" alt="Product 1" class="product-image">
                 <h3>Rice</h3>
-                <p>Price: &#8358;65,000/bag</p>
+                <p>From &#8358;2,300</p>
             </div>
             <div class="product-card">
                 <img src="/foodstuff/images/beans.jpg" alt="Product 2" class="product-image">
                 <h3>Beans</h3>
-                <p>Price: &#8358;84,000/bag</p>
+                <p>From &#8358;66,000/bag</p>
             </div>
             <div class="product-card">
                 <img src="/foodstuff/images/gaari.jpg" alt="Product 3" class="product-image">
                 <h3>Gaari</h3>
-                <p>Price: &#8358;42,000/bag</p>
+                <p>From &#8358;36,000/bag</p>
             </div>
             <div class="product-card">
                 <img src="/foodstuff/images/palm-oil.jpg" alt="Product 4" class="product-image">
                 <h3>Palm Oil</h3>
-                <p>Price: &#8358;6,000/keg</p>
+                <p>From &#8358;2,500/keg</p>
             </div>
         </div>
     </div>
+    <footer>
+        <div class="contact-us">
+            <!--
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you! Whether you have a question about our products, need assistance with your order, 
+                or just want to give us feedback, feel free to reach out.</p>
+            -->
+            <a href="map:https://goo.gl/maps/8JHh3r1v3vT2" aria-label="Find us on Google Maps">
+                <img class="contact-img" src="/foodstuff/images/location2.png" alt="login-logo">
+                <span>23, Gbekuba St. Apata</span>
+            </a>
+            <a href="tel:09131839726" arial-label="Call John Adeloye">
+                <img class="contact-img" src="/foodstuff/images/phone2.png" alt="cart-logo">
+                <span>Phone: 09131839726</span>
+            </a>
+            <a href="mailto:john.adeloye@yahoo.com" aria-label="Email John Adeloye">
+                <img class="contact-img" src="/foodstuff/images/email2.png" alt="" aria-hidden="true">
+                <span>john.adeloye@yahoo.com</span>
+            </a>
+        </div>
+        <div class="contact-image">
+            <img src="/foodstuff/images/post2.jpg" alt="contact-us-image">
+        </div>
+        <p>&copy; 2025 FoodSocket. All rights reserved.</p>
+    </footer>
 </body>
 </html>
