@@ -14,7 +14,7 @@ a {
     "upper1 upper2 upper3";
     grid-template-columns: 1fr 3fr 5fr;
     gap: 10px;
-    margin: 20px;
+    margin: 20px 0px;
     border-radius: 10px;
     height: 120px;
     background-color: rgb(241, 231, 218);
@@ -70,11 +70,16 @@ a {
 }
 .menu ul {
     display: grid;
-    grid-template-areas: "one two three four five";
-    grid-template-columns: 2fr 2fr 2fr 2fr 5fr;
+    grid-template-areas: "one two three four";
+    grid-template-columns: repeat(4, 1fr);
     gap: 5px;
     list-style: none;
-    padding: 5px 20px 5px 40px;
+    padding: 5px 150px 5px 80px;
+    border-block: 4px bisque solid;
+    background-color: rgb(241, 231, 218);
+    margin: 0px 20px 0px 20px;
+    border-radius: 20px;
+    justify-items: center;
 }
 
 ul li a {
@@ -85,10 +90,6 @@ ul li a {
     font-size: larger;
     font-weight: 700;
     cursor: pointer;
-}
-
-.menu > ul li a {                       /* Remove dot from navigation */
-    text-decoration: none;
 }
 
 ul .sublink:nth-child(1) {
@@ -103,13 +104,7 @@ ul .sublink:nth-child(3) {
 ul .sublink:nth-child(4) {
     grid-area: four;
 }
-ul .sublink:nth-child(5) {
-    grid-area: five;
-}
-.hotline, .phone{
-    font-size: small;
-    text-align: end;
-}
+
 .banner {
     margin: 20px 20px 10px 20px;
     text-align: center;

@@ -2,6 +2,10 @@
     font-size: 1.5rem;
     text-align: center;
     margin-top: 5rem;
+    background-color: rgb(232, 184, 184);
+    border-radius: 10px;
+    margin: 5rem 10rem 2rem 10rem;
+    padding: 10px;
 }
 .faqs-section {
     display: grid;
@@ -19,7 +23,7 @@
 .membership h2, .order-payment h2 {
     text-align: center;
     font-size: 1.2rem;
-    background-color: rgb(232, 184, 184);
+    background-color: rgb(245, 216, 216);
     border-radius: 10px;
     padding: 5px;
     margin: 0rem 10rem 2rem 10rem;
