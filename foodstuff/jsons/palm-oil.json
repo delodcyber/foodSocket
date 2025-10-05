@@ -1,0 +1,32 @@
+{
+"palmOil": [
+{
+"productName": "Pure Palm Oil (Local)",
+"kongoPrice": "₦1,800",
+"bagPrice": "₦27,000",
+"bagWeight": "5L",
+"image": "palmoil1.jpg"
+},
+{
+"productName": "Refined Palm Oil (Brand)",
+"kongoPrice": "₦2,200",
+"bagPrice": "₦66,000",
+"bagWeight": "25L",
+"image": "palmoil2.jpg"
+},
+{
+"productName": "Cooking Palm Oil (Bulk)",
+"kongoPrice": "₦1,750",
+"bagPrice": "₦52,500",
+"bagWeight": "25L",
+"image": "palmoil3.jpg"
+},
+{
+"productName": "Cold-Pressed Palm Oil",
+"kongoPrice": "₦2,500",
+"bagPrice": "₦75,000",
+"bagWeight": "25L",
+"image": "palmoil4.jpg"
+}
+]
+}

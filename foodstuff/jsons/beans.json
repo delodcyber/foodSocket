@@ -1,0 +1,39 @@
+{
+"beans": [
+{
+"productName": "Brown Beans (Local)",
+"kongoPrice": "₦1,200",
+"bagPrice": "₦36,000",
+"bagWeight": "30kg",
+"image": "beans1.jpg"
+},
+{
+"productName": "White Beans (Premium)",
+"kongoPrice": "₦1,400",
+"bagPrice": "₦42,000",
+"bagWeight": "30kg",
+"image": "beans2.jpg"
+},
+{
+"productName": "Nigerian Honey Beans",
+"kongoPrice": "₦1,350",
+"bagPrice": "₦40,500",
+"bagWeight": "30kg",
+"image": "beans3.jpg"
+},
+{
+"productName": "Pinto Beans (Imported)",
+"kongoPrice": "₦1,600",
+"bagPrice": "₦48,000",
+"bagWeight": "30kg",
+"image": "beans4.jpg"
+},
+{
+"productName": "Brown Beans (Bulk)",
+"kongoPrice": "₦1,150",
+"bagPrice": "₦34,500",
+"bagWeight": "30kg",
+"image": "beans5.jpg"
+}
+]
+}

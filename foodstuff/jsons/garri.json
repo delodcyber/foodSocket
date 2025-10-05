@@ -1,0 +1,32 @@
+{
+"gaari": [
+{
+"productName": "Fine Garri (White)",
+"kongoPrice": "₦900",
+"bagPrice": "₦22,500",
+"bagWeight": "25kg",
+"image": "gaari1.jpg"
+},
+{
+"productName": "Coarse Garri (Yellow)",
+"kongoPrice": "₦850",
+"bagPrice": "₦21,250",
+"bagWeight": "25kg",
+"image": "gaari2.jpg"
+},
+{
+"productName": "Extra Fine Garri",
+"kongoPrice": "₦1,000",
+"bagPrice": "₦25,000",
+"bagWeight": "25kg",
+"image": "gaari3.jpg"
+},
+{
+"productName": "Garri (Bulk)",
+"kongoPrice": "₦820",
+"bagPrice": "₦20,500",
+"bagWeight": "25kg",
+"image": "gaari4.jpg"
+}
+]
+}
