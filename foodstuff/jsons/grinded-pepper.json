@@ -1,0 +1,32 @@
+{
+"grindedPepper": [
+{
+"productName": "Ground Red Pepper (Fine)",
+"kongoPrice": "₦600",
+"bagPrice": "₦15,000",
+"bagWeight": "25kg",
+"image": "pepper1.jpg"
+},
+{
+"productName": "Ground Pepper (Medium)",
+"kongoPrice": "₦550",
+"bagPrice": "₦13,750",
+"bagWeight": "25kg",
+"image": "pepper2.jpg"
+},
+{
+"productName": "Smoked Pepper Powder",
+"kongoPrice": "₦750",
+"bagPrice": "₦18,750",
+"bagWeight": "25kg",
+"image": "pepper3.jpg"
+},
+{
+"productName": "Chili Pepper Blend",
+"kongoPrice": "₦680",
+"bagPrice": "₦17,000",
+"bagWeight": "25kg",
+"image": "pepper4.jpg"
+}
+]
+}
