@@ -2,38 +2,28 @@
   "products": [
     {
       "productName": "Refined Local Rice",
-      "kongoPrice": "&#8358;2,300",
-      "bagPrice": "&#8358;66,500",
-      "bagWeight": "50kg",
-      "image": "rice1.jpg"
+      "kongoPrice": "₦2,200/Kongo",
+      "image": "../images/rice.jpg"
     },
     {
       "productName": "Premium Local Rice",
-      "kongoPrice": "&#8358;2,500",
-      "bagPrice": "&#8358;72,500",
-      "bagWeight": "50kg",
-      "image": "rice2.jpg"
-    },
-    {
-      "productName": "Super Local Rice",
-      "kongoPrice": "&#8358;2,700",
-      "bagPrice": "&#8358;78,500",
-      "bagWeight": "50kg",
-      "image": "rice3.jpg"
-    },
-    {
-      "productName": "Imported Rice",
-      "kongoPrice": "&#8358;3,000",
-      "bagPrice": "&#8358;85,000",
-      "bagWeight": "50kg",
-      "image": "rice4.jpg"
+      "kongoPrice": "₦2,500/Kongo",
+      "image": "../images/rice.jpg"
     },
     {
       "productName": "Foreign Rice",
-      "kongoPrice": "&#8358;2,900",
-      "bagPrice": "&#8358;90,000",
-      "bagWeight": "50kg",
-      "image": "rice5.jpg"
+      "kongoPrice": "₦2,800/Kongo",
+      "image": "../images/rice.jpg"
+    },
+    {
+      "productName": "Mamador Rice",
+      "kongoPrice": "₦3,000/Kongo",
+      "image": "../images/rice.jpg"
+    },
+    {
+      "productName": "Perfume Rice",
+      "kongoPrice": "₦3,900/Kongo",
+      "image": "../images/rice.jpg"
     }
   ]
 }

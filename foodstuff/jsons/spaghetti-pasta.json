@@ -1,32 +1,29 @@
 {
-"spaghettiPasta": [
-{
-"productName": "Spaghetti (500g)",
-"kongoPrice": "₦400",
-"bagPrice": "₦40,000",
-"bagWeight": "50 x 500g",
-"image": "spaghetti1.jpg"
-},
-{
-"productName": "Spaghetti (1kg)",
-"kongoPrice": "₦750",
-"bagPrice": "₦70,000",
-"bagWeight": "50 x 1kg",
-"image": "spaghetti2.jpg"
-},
-{
-"productName": "Pasta Mix (500g)",
-"kongoPrice": "₦420",
-"bagPrice": "₦42,000",
-"bagWeight": "50 x 500g",
-"image": "spaghetti3.jpg"
-},
-{
-"productName": "Premium Pasta (1kg)",
-"kongoPrice": "₦900",
-"bagPrice": "₦85,000",
-"bagWeight": "50 x 1kg",
-"image": "spaghetti4.jpg"
-}
-]
+    "spaghettiPasta": [
+        {
+        "productName": "Dangote Spaghetti (500g)",
+        "kongoPrice": "₦1,400",
+        "image": "../images/pasta.webp"
+        },
+        {
+        "productName": "Golden penny Spaghetti (500mg)",
+        "kongoPrice": "₦1,550",
+        "image": "../images/pasta.webp"
+        },
+        {
+        "productName": "Honeywell Spaghetti (500g)",
+        "kongoPrice": "₦1,350",
+        "image": "../images/pasta.webp"
+        },
+        {
+        "productName": "Pasta Mix (500g)",
+        "kongoPrice": "₦2,000",
+        "image": "../images/pasta.webp"
+        },
+        {
+        "productName": "Premium Pasta (1kg)",
+        "kongoPrice": "₦4,000",
+        "image": "../images/pasta.webp"
+        }
+    ]
 }
