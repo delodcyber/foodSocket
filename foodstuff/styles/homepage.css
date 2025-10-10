@@ -61,13 +61,19 @@ a {
 .icon-img {
     width: 30px;
     height: 30px;
-    padding: 0px 0px 0px 10px;
+    padding: 0px 0px 0px 25px;
+}
+.icon-img:hover {
+    transform: scale(1.5);
+    transition: 0.6s;
 }
 
 .profile-auth .icon-img {
     width: 15px;
     height: 15px;
 }
+
+
 .menu ul {
     display: grid;
     grid-template-areas: "one two three four";
@@ -77,7 +83,7 @@ a {
     padding: 5px 150px 5px 80px;
     border-block: 4px bisque solid;
     background-color: rgb(241, 231, 218);
-    margin: 0px 20px 0px 20px;
+    margin: 0px 60px 0px 60px;
     border-radius: 20px;
     justify-items: center;
 }
@@ -85,13 +91,19 @@ a {
 ul li a {
     background: none;
     border: none;
-    padding: 0;
+    padding: 10px 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: larger;
     font-weight: 700;
     cursor: pointer;
 }
+ul li a:hover {
+    color: rgb(198, 43, 43);
+    background-color: rgb(85, 225, 225);
+    border-radius: 20px;
+    transition: 0.5s;
 
+}
 ul .sublink:nth-child(1) {
     grid-area: one;
 }
@@ -105,8 +117,10 @@ ul .sublink:nth-child(4) {
     grid-area: four;
 }
 
+
+
 .banner {
-    margin: 20px 20px 10px 20px;
+    margin: 20px 60px 10px 60px;
     text-align: center;
 }
 .banner img {
@@ -118,7 +132,7 @@ ul .sublink:nth-child(4) {
 }
 .product-slide h2 {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 20px 20px 0px 40px;
+    margin: 20px 20px 0px 60px;
 
 }
 .product-container {

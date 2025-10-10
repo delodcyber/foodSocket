@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Checkout - FoodSocket</title>
+    <link rel="stylesheet" href="styles/homepage.css">
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="stylesheet" href="styles/about.css">
+</head>
+<body>
+    <header>
+        <div class="header-upper">
+            <div class="company">
+                <img src="images/logo2.jpeg" alt="HomepageLogo" class="logo">
+            </div>
+            <!--<p>Explore our wide range of products and enjoy the best deals!</p>
+            <p>Don't miss out on our special offers!</p>-->
+            <div class="slogan">
+                <p class="buy-now">Buy Now</p>
+                <p>Pay Later</p>
+            </div>
+            <div class="auth-links">
+                <div class="socialmedia">
+                    <a class="fb-icon" href="https://www.facebook.com/">
+                    <img class="icon-img" src="images/facebook.png" alt="facebook-logo">
+                    </a>
+                    <a class="insta-icon" href="https://www.instagram.com/">
+                    <img class="icon-img" src="images/Instagram.png" alt="instagram-logo">
+                    </a>
+                </div>
+                <div class="profile-auth">
+                    <a href="">
+                        <img class="icon-img" src="images/profile2.png" alt="login-logo">
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="menu" aria-label="Main navigation">
+        <ul>
+            <li><a class="sublink" href="index.html" aria-current="page">Home</a></li>
+            <li><a class="sublink" href="product.html">Products</a></li>
+            <li><a class="sublink" href="faqs.html">FAQs</a></li>
+            <li><a class="sublink" href="about.html">About Us</a></li>
+        </ul>
+        </nav>
+    </header>
+
+    <main class="checkout-page">
+        <h1>Checkout</h1>
+        <div class="checkout-grid">
+            <section class="order-summary" aria-labelledby="order-summary-title">
+                <h2 id="order-summary-title">Order Summary</h2>
+                <div id="cart-items" class="cart-items">
+                    <!-- rendered by scripts/checkout.js -->
+                </div>
+                <div class="order-totals">
+                    <div class="totals-row"><span>Subtotal</span><span id="subtotal">₦0</span></div>
+                    <div class="totals-row"><span>Delivery</span><span id="delivery">₦0</span></div>
+                    <div class="totals-row grand"><span>Total</span><span id="grand-total">₦0</span></div>
+                </div>
+            </section>
+
+            <section class="checkout-form" aria-labelledby="checkout-form-title">
+                <h2 id="checkout-form-title">Shipping & Payment</h2>
+                <form id="checkoutForm" novalidate>
+                    <fieldset>
+                        <legend>Shipping details</legend>
+                        <label>
+                            Full name
+                            <input name="fullname" required />
+                        </label>
+                        <label>
+                            Phone
+                            <input name="phone" type="tel" required />
+                        </label>
+                        <label>
+                            Address
+                            <input name="address" required />
+                        </label>
+                        <label>
+                            City
+                            <input name="city" required />
+                        </label>
+                        <label>
+                            Notes (optional)
+                            <textarea name="notes" rows="2"></textarea>
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Payment</legend>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card" checked> Card
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mobile"> Mobile Transfer
+                        </label>
+
+                        <div id="card-fields">
+                            <label>
+                                Card number
+                                <input name="cardnumber" inputmode="numeric" pattern="[0-9\s]{12,19}" />
+                            </label>
+                            <div class="row">
+                                <label>
+                                    Expiry (MM/YY)
+                                    <input name="expiry" placeholder="MM/YY" />
+                                </label>
+                                <label>
+                                    CVC
+                                    <input name="cvc" inputmode="numeric" maxlength="4" />
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button id="placeOrder" type="submit">Pay & Place Order</button>
+                        <button id="clearCart" type="button" class="muted">Clear cart</button>
+                    </div>
+                </form>
+
+                <div id="checkout-message" aria-live="polite" class="checkout-message"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="contact-us">
+            <!--
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you! Whether you have a question about our products, need assistance with your order, 
+                or just want to give us feedback, feel free to reach out.</p>
+            -->
+            <a href="map:https://goo.gl/maps/8JHh3r1v3vT2" aria-label="Find us on Google Maps">
+                <img class="contact-img" src="images/location2.png" alt="login-logo">
+                <span>23, Gbekuba St. Apata</span>
+            </a>
+            <a href="tel:09131839726" arial-label="Call John Adeloye">
+                <img class="contact-img" src="images/phone2.png" alt="cart-logo">
+                <span>Phone: 09131839726</span>
+            </a>
+            <a href="mailto:john.adeloye@yahoo.com" aria-label="Email John Adeloye">
+                <img class="contact-img" src="images/email2.png" alt="" aria-hidden="true">
+                <span>john.adeloye@yahoo.com</span>
+            </a>
+        </div>
+        <div class="contact-image">
+            <img src="images/post2.jpg" alt="contact-us-image">
+        </div>
+        <p>&copy; 2025 FoodSocket. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/checkout.js"></script>
+</body>
+</html>

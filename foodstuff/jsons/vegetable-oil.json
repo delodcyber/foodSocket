@@ -1,32 +1,24 @@
 {
-"vegetableOil": [
-{
-"productName": "Vegetable Oil (1L)",
-"kongoPrice": "₦900",
-"bagPrice": "₦4,500",
-"bagWeight": "5L",
-"image": "vegetableoil1.jpg"
-},
-{
-"productName": "Refined Vegetable Oil (Brand)",
-"kongoPrice": "₦1,200",
-"bagPrice": "₦36,000",
-"bagWeight": "25L",
-"image": "vegetableoil2.jpg"
-},
-{
-"productName": "Sunflower Oil (Bulk)",
-"kongoPrice": "₦1,100",
-"bagPrice": "₦33,000",
-"bagWeight": "25L",
-"image": "vegetableoil3.jpg"
-},
-{
-"productName": "Canola Blend Oil",
-"kongoPrice": "₦1,350",
-"bagPrice": "₦40,500",
-"bagWeight": "25L",
-"image": "vegetableoil4.jpg"
-}
-]
+    "vegetableOil": [
+        {
+        "productName": "Golden Penny Oil (5L)",
+        "kongoPrice": "₦9,000",
+        "image": "../images/vegetable-oil.jpg"
+        },
+        {
+        "productName": "Mamador Oil (5L)",
+        "kongoPrice": "₦9,300",
+        "image": "../images/vegetable-oil.jpg"
+        },
+        {
+        "productName": "Sunflower Oil (5L)",
+        "kongoPrice": "₦8,800",
+        "image": "../images/vegetable-oil.jpg"
+        },
+        {
+        "productName": "Canola Blend Oil",
+        "kongoPrice": "₦9,200",
+        "image": "../images/vegetable-oil.jpg"
+        }
+    ]
 }
