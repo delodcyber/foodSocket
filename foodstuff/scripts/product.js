@@ -324,6 +324,8 @@ function addToCartFromProduct(product) {
     }
     saveCart(cart);
     updateCartIndicator();
+    // notify site-wide cart script to update immediately on this page
+    window.dispatchEvent(new Event('cart-changed'));
 }
 
 // Cart indicator (badge in header)
@@ -455,6 +457,8 @@ function removeFromCart(name) {
     const cart = getCart().filter(i => i.name !== name);
     saveCart(cart);
     updateCartIndicator();
+     // notify site-wide cart script
+    window.dispatchEvent(new Event('cart-changed'));
 
     // re-enable Add buttons for that product if present
     const btn = document.querySelector(`.add-to-cart[data-product-name="${CSS.escape(name)}"]`);
@@ -462,5 +466,136 @@ function removeFromCart(name) {
         btn.disabled = false;
         btn.textContent = 'Add to cart';
     }
+}
+
+
+// ...Add quantity box for selection...
+// ...existing code...
+function renderCards(products, container) {
+    container.innerHTML = '';
+    if (!products || products.length === 0) {
+        container.innerHTML = '<p class="empty">No products available.</p>';
+        return;
+    }
+
+    const list = document.createElement('div');
+    list.className = 'cards-list';
+    products.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+
+        const img = document.createElement('img');
+        img.className = 'product-image';
+        img.src = p.image ? `images/${p.image}` : 'images/placeholder.png';
+        img.alt = p.productName || p.productname || p.name || 'product';
+        img.loading = 'lazy';
+
+        const info = document.createElement('div');
+        info.className = 'product-info';
+
+        const title = document.createElement('h3');
+        title.textContent = p.productName || p.productname || p.name || '';
+
+        const kongo = document.createElement('p');
+        kongo.className = 'kongo-price';
+        kongo.innerHTML = p.kongoPrice || p.kongoprice || '';
+
+        const bag = document.createElement('p');
+        bag.className = 'bag-price';
+        bag.textContent = p.bagPrice ? p.bagPrice : (p.bagprice || '');
+
+        const weight = document.createElement('p');
+        weight.className = 'bag-weight';
+        weight.textContent = p.bagWeight || p.bagweight || '';
+
+        // quantity input
+        const controls = document.createElement('div');
+        controls.className = 'product-controls';
+
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'number';
+        qtyInput.min = '1';
+        qtyInput.value = '1';
+        qtyInput.className = 'qty-input';
+        qtyInput.setAttribute('aria-label', 'Quantity');
+        // ensure minimum 1
+        qtyInput.addEventListener('input', () => {
+            if (qtyInput.value === '' || Number(qtyInput.value) < 1) qtyInput.value = '1';
+        });
+
+        // Add to Cart button (only if there's a price)
+        const priceValue = getPrimaryPrice(p);
+        const btn = document.createElement('button');
+        btn.className = 'add-to-cart';
+        btn.type = 'button';
+        btn.textContent = priceValue ? 'Add to cart' : 'No price';
+        btn.disabled = !priceValue;
+        btn.setAttribute('data-product-name', (p.productName || p.productname || p.name || '').toString());
+
+        if (priceValue) {
+            // restore state if already in cart
+            const already = isInCart(p);
+            if (already) {
+                btn.textContent = `Added (${already.quantity})`;
+                btn.disabled = true;
+            }
+
+            btn.addEventListener('click', () => {
+                const qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+                addToCartFromProduct(p, qty);
+                btn.textContent = 'Added';
+                btn.disabled = true;
+            });
+        }
+
+        // assemble
+        controls.appendChild(qtyInput);
+        controls.appendChild(btn);
+
+        info.appendChild(title);
+        if (kongo.textContent || kongo.innerHTML) info.appendChild(kongo);
+        if (bag.textContent) info.appendChild(bag);
+        if (weight.textContent) info.appendChild(weight);
+        info.appendChild(controls);
+
+        card.appendChild(img);
+        card.appendChild(info);
+        list.appendChild(card);
+    });
+
+    container.appendChild(list);
+
+    // ensure cart indicator exists and is updated
+    ensureCartIndicator();
+    updateCartIndicator();
+}
+// ...existing code...
+
+// ...existing code...
+// Cart helpers (added)
+function addToCartFromProduct(product, quantity = 1) {
+    const name = (product.productName || product.productname || product.name || '').toString();
+    if (!name) return;
+
+    const image = product.image ? `images/${product.image}` : null;
+    const price = getPrimaryPrice(product) || '';
+    const weight = product.bagWeight || product.bagweight || '';
+
+    const cart = getCart();
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+        existing.quantity = (existing.quantity || 0) + Number(quantity);
+    } else {
+        cart.push({
+            name,
+            price,
+            image,
+            weight,
+            quantity: Number(quantity),
+            addedAt: Date.now()
+        });
+    }
+    saveCart(cart);
+    updateCartIndicator();
 }
 // ...existing code...

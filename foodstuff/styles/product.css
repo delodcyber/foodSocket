@@ -148,7 +148,34 @@
     font-size: 0.95rem;
 }
 
-/* responsive: stack card vertically on narrow screens */
+/* quantity input and controls for product cards */
+.product-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* number input with spinner arrows (default browser) */
+.qty-input {
+    width: 40px;
+    padding: 6px 8px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    text-align: center;
+    background: #fff;
+    -moz-appearance: textfield;
+}
+
+/* hide default Firefox number input arrows inside textfield - keep spinner visible */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: auto;
+    margin: 0;
+}
+
+/* on very small screens make controls stack neatly */
 @media (max-width: 560px) {
     .product-card {
         flex-direction: column;
@@ -166,3 +193,5 @@
         width: 100%;
     }
 }
+
+
