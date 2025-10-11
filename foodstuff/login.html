@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs</title>
-    <link rel="stylesheet" href="styles/faqs.css">
     <link rel="stylesheet" href="styles/homepage.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <title>Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+        <header>
         <div class="header-upper">
             <div class="company">
                 <img src="images/logo2.jpeg" alt="HomepageLogo" class="logo">
@@ -48,58 +48,63 @@
         </ul>
         </nav>
     </header>
-    <main>
-        <div class="faqs-container">
-        <h1>Frequently Asked Questions (FAQs)</h1>
-            <div class="faqs-section">
-                <div class="membership">
-                    <h2>Membership  Questions</h2>
-                    <div class="faq-item">
-                        <h3>What is FoodSocket?</h3>
-                        <p>FoodSocket is an online platform that allows you to buy groceries and food items
-                            with the convenience of paying later.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How does the "Buy Now, Pay Later" option work?</h3>
-                        <p>When you select the "Buy Now, Pay Later" option at checkout, you can complete your 
-                            purchase without immediate payment. You will receive a payment reminder before the due date.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How can I contact customer support?</h3>
-                        <p>You can reach our customer support team via email at support@foodsocket.com.</p>
-                    </div>
+
+    <main class="login-main">
+        <section class="hero" style="grid-template-columns: 420px 1fr;">
+        <div class="form-card" aria-labelledby="signin-title">
+            <h2 id="signin-title">Welcome back</h2>
+
+            <form id="loginForm" novalidate>
+            <label>
+                Email
+                <input name="email" id="email" type="email" required autocomplete="email" />
+            </label>
+
+            <label class="pw-row">
+                Password
+                <div class="pw-field">
+                <input name="password" id="password" type="password" required autocomplete="current-password" />
+                <button type="button" class="pw-toggle" id="togglePw" aria-label="Show password">👁️</button>
                 </div>
-                <div class = "order-payment">
-                    <h2>Orders and Payment</h2>
-                    <div class="faq-item">
-                        <h3>How do I place an order?</h3>
-                        <p>To place an order, simply browse our product catalog, add items to your cart, and 
-                            proceed to checkout. Follow the prompts to complete your purchase.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How can I track my order?</h3>
-                        <p>You can track your order status by logging into your account and visiting the "My Orders" section. 
-                            You will also receive email updates regarding your order.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What should I do if I receive a damaged or incorrect item?</h3>
-                        <p>If you receive a damaged or incorrect item, please contact our customer service team within 
-                            48 hours of receiving your order. We will assist you with the return or exchange process.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What is your return policy?</h3>
-                        <p>We offer a 30-day return policy on most items. If you are not satisfied with your purchase, 
-                            please contact our customer service for assistance.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What payment methods do you accept?</h3>
-                        <p>We accept various payment methods including credit/debit cards, bank transfers, and mobile 
-                            payments. Please check our payment page for more details.</p>
-                    </div>
-                </div>
+            </label>
+
+            <label style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+                <input type="checkbox" id="remember" /> Remember me
+                <a href="login.html" style="margin-left:auto;color:var(--muted);text-decoration:none;">Forgot password?</a>
+            </label>
+
+            <div class="form-actions" style="margin-top:14px;">
+                <button id="loginBtn" class="primary" type="submit">Sign in</button>
+                <a class="muted-link" href="sign-up.html">Create account</a>
             </div>
+
+            <div class="form-message" id="formMsg" role="alert" aria-live="polite"></div>
+            </form>
+
+            <div style="margin-top:12px;border-top:1px dashed rgba(0,0,0,0.06);padding-top:12px;">
+            <p style="margin:6px 0;color:var(--muted);font-size:0.95rem;">Or continue with</p>
+            <div style="display:flex;gap:8px;">
+                <button class="brand-cta" style="background:#1a73e8;padding:8px 10px;">Google</button>
+                <button class="brand-cta" style="background:#3b5998;padding:8px 10px;">Facebook</button>
+            </div>
+            </div>
+
+            <p class="have-account" style="margin-top:12px;">By signing in you agree to our <a href="#" style="color:var(--accent)">Terms</a>.</p>
         </div>
+
+        <div class="hero-card" aria-hidden="true">
+            <h1>Good food, better prices</h1>
+            <p>Sign in to access saved orders, faster checkout and exclusive deals — all aligned with FoodSocket's fresh & affordable promise.</p>
+            <ul class="benefits">
+            <li>Quick re-order</li>
+            <li>Secure checkout</li>
+            <li>Member discounts</li>
+            </ul>
+            <a class="brand-cta" href="product.html">Browse products</a>
+        </div>
+        </section>
     </main>
+
     <footer>
         <div class="contact-us">
             <!--
@@ -125,7 +130,9 @@
         </div>
         <p>&copy; 2025 FoodSocket. All rights reserved.</p>
     </footer>
+
     <script src="scripts/cart.js"></script>
+    <script src="scripts/login.js"></script>
     <script src="scripts/homepage.js"></script>
 </body>
 </html>

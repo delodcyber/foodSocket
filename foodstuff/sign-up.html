@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs</title>
-    <link rel="stylesheet" href="styles/faqs.css">
     <link rel="stylesheet" href="styles/homepage.css">
+    <link rel="stylesheet" href="styles/sign-up.css">
+    <title>Create Account</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
@@ -48,58 +48,69 @@
         </ul>
         </nav>
     </header>
-    <main>
-        <div class="faqs-container">
-        <h1>Frequently Asked Questions (FAQs)</h1>
-            <div class="faqs-section">
-                <div class="membership">
-                    <h2>Membership  Questions</h2>
-                    <div class="faq-item">
-                        <h3>What is FoodSocket?</h3>
-                        <p>FoodSocket is an online platform that allows you to buy groceries and food items
-                            with the convenience of paying later.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How does the "Buy Now, Pay Later" option work?</h3>
-                        <p>When you select the "Buy Now, Pay Later" option at checkout, you can complete your 
-                            purchase without immediate payment. You will receive a payment reminder before the due date.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How can I contact customer support?</h3>
-                        <p>You can reach our customer support team via email at support@foodsocket.com.</p>
-                    </div>
-                </div>
-                <div class = "order-payment">
-                    <h2>Orders and Payment</h2>
-                    <div class="faq-item">
-                        <h3>How do I place an order?</h3>
-                        <p>To place an order, simply browse our product catalog, add items to your cart, and 
-                            proceed to checkout. Follow the prompts to complete your purchase.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How can I track my order?</h3>
-                        <p>You can track your order status by logging into your account and visiting the "My Orders" section. 
-                            You will also receive email updates regarding your order.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What should I do if I receive a damaged or incorrect item?</h3>
-                        <p>If you receive a damaged or incorrect item, please contact our customer service team within 
-                            48 hours of receiving your order. We will assist you with the return or exchange process.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What is your return policy?</h3>
-                        <p>We offer a 30-day return policy on most items. If you are not satisfied with your purchase, 
-                            please contact our customer service for assistance.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What payment methods do you accept?</h3>
-                        <p>We accept various payment methods including credit/debit cards, bank transfers, and mobile 
-                            payments. Please check our payment page for more details.</p>
-                    </div>
-                </div>
-            </div>
+
+    <main class="login-main">
+        <section class="hero">
+        <div class="hero-card">
+            <h1>Welcome to FoodSocket</h1>
+            <p>Get fresh, bulk and affordable groceries delivered. Create an account to save orders and enjoy faster checkout.</p>
+            <ul class="benefits">
+            <li>Easy ordering</li>
+            <li>Secure payments</li>
+            <li>Exclusive deals</li>
+            </ul>
+            <a class="brand-cta" href="product.html">Browse Products</a>
         </div>
+        <div class="form-card" aria-labelledby="signup-title">
+            <h2 id="signup-title">Create account</h2>
+
+            <form id="signupForm" novalidate>
+            <label>
+                Full name
+                <input name="fullname" id="fullname" required autocomplete="name" />
+            </label>
+
+            <label>
+                Email
+                <input name="email" id="email" type="email" required autocomplete="email" />
+            </label>
+
+            <label>
+                Phone
+                <input name="phone" id="phone" inputmode="tel" autocomplete="tel" />
+            </label>
+
+            <label class="pw-row">
+                Password
+                <div class="pw-field">
+                <input name="password" id="password" type="password" required autocomplete="new-password" />
+                <button type="button" class="pw-toggle" id="togglePw" aria-label="Show password">👁️</button>
+                </div>
+            </label>
+
+            <label>
+                Confirm password
+                <input name="confirm" id="confirm" type="password" required autocomplete="new-password" />
+            </label>
+
+            <div class="pw-strength" id="pwStrength" aria-hidden="true">
+                <div class="meter"><span></span></div>
+                <small class="strength-text" id="strengthText">Use 8+ characters with numbers & letters</small>
+            </div>
+
+            <div class="form-actions">
+                <button id="signupBtn" class="primary" type="submit">Create account</button>
+                <a class="muted-link" href="product.html">Continue as guest</a>
+            </div>
+
+            <div class="form-message" id="formMsg" role="alert" aria-live="polite"></div>
+            </form>
+
+            <p class="have-account">Already have an account? <a href="login.html">Sign in</a></p>
+        </div>
+        </section>
     </main>
+
     <footer>
         <div class="contact-us">
             <!--
@@ -125,7 +136,9 @@
         </div>
         <p>&copy; 2025 FoodSocket. All rights reserved.</p>
     </footer>
+
     <script src="scripts/cart.js"></script>
+    <script src="scripts/sign-up.js"></script>
     <script src="scripts/homepage.js"></script>
-</body>
-</html>
+    </body>
+    </html>

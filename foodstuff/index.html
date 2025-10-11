@@ -39,8 +39,17 @@
             </div>
         </div>
         <nav class="menu" aria-label="Main navigation">
-        <ul>
-            <li><a class="sublink" href="index.html" aria-current="page">Home</a></li>
+        <!-- keep a visible toggle in DOM so mobile button never disappears -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav-list" aria-label="Toggle menu">
+            <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true" focusable="false">
+            <rect width="22" height="2" y="0" rx="1" fill="#222"></rect>
+            <rect width="22" height="2" y="7" rx="1" fill="#222"></rect>
+            <rect width="22" height="2" y="14" rx="1" fill="#222"></rect>
+            </svg>
+        </button>
+
+        <ul id="main-nav-list">
+            <li><a class="sublink" href="index.html">Home</a></li>
             <li><a class="sublink" href="product.html">Products</a></li>
             <li><a class="sublink" href="faqs.html">FAQs</a></li>
             <li><a class="sublink" href="about.html">About Us</a></li>
@@ -117,6 +126,6 @@
         <p>&copy; 2025 FoodSocket. All rights reserved.</p>
     </footer>
     <script src="scripts/cart.js"></script>
-    <script src="scripts/homepage1.js"></script>
+    <script src="scripts/homepage.js"></script>
 </body>
 </html>

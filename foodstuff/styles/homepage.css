@@ -16,7 +16,7 @@ a {
     gap: 10px;
     margin: 20px 0px;
     border-radius: 10px;
-    height: 120px;
+    height: 125px;
     background-color: rgb(241, 231, 218);
 }
 .header-upper > .company {
@@ -48,7 +48,7 @@ a {
     padding: 10px 20px;
 }
 .socialmedia {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 .profile-auth {
     display: inline-block;
@@ -61,7 +61,7 @@ a {
 .icon-img {
     width: 30px;
     height: 30px;
-    padding: 0px 0px 0px 25px;
+    margin: 0px 0px 0px 25px;
 }
 .icon-img:hover {
     transform: scale(1.5);
@@ -75,49 +75,85 @@ a {
 
 
 .menu ul {
-    display: grid;
-    grid-template-areas: "one two three four";
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
+    display: flex;
+    flex-wrap: nowrap;           /* keep items on a single line */
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 4vw, 90px); /* shrink gap as viewport shrinks */
     list-style: none;
-    padding: 5px 150px 5px 80px;
+    padding: 8px clamp(12px, 6vw, 60px);
     border-block: 4px bisque solid;
     background-color: rgb(241, 231, 218);
-    margin: 0px 60px 0px 60px;
+    margin: 0 clamp(12px, 5vw, 60px);
     border-radius: 20px;
-    justify-items: center;
+    box-sizing: border-box;
 }
 
-ul li a {
-    background: none;
-    border: none;
-    padding: 10px 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: larger;
-    font-weight: 700;
-    cursor: pointer;
-}
-ul li a:hover {
-    color: rgb(198, 43, 43);
-    background-color: rgb(85, 225, 225);
-    border-radius: 20px;
-    transition: 0.5s;
-
-}
-ul .sublink:nth-child(1) {
-    grid-area: one;
-}
-ul .sublink:nth-child(2) {
-    grid-area: two;
-}
-ul .sublink:nth-child(3) {
-    grid-area: three;
-}
-ul .sublink:nth-child(4) {
-    grid-area: four;
+/* let each menu item shrink but not wrap its text */
+.menu ul li {
+    flex: 0 1 auto;
+    min-width: 0; /* allow text-overflow on children */
 }
 
+.menu ul li a {
+    display: inline-block;
+    padding: 10px clamp(8px, 2.2vw, 50px); /* padding reduces with viewport */
+    white-space: nowrap;    /* prevent "About Us" from breaking */
+    overflow: hidden;
+    text-overflow: ellipsis; /* if cramped, truncate with ellipsis */
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+}
 
+/* Gradual adjustments before the mobile/hamburger breakpoint */
+@media (max-width: 1200px) {
+    .menu ul { gap: clamp(10px, 3.6vw, 60px); padding: 8px 40px; margin: 0 40px; }
+    .menu ul li a { padding: 10px 18px; }
+}
+
+@media (max-width: 988px) {
+    /* keep "About Us" on one line by further reducing gap/padding and font */
+    .menu ul { gap: 12px; padding: 6px 20px; margin: 0 12px; }
+    .menu ul li a { padding: 8px 12px; font-size: 0.98rem; }
+}
+
+/* Small-screen behaviour (toggle/hamburger appears at <=980px as in your JS) */
+@media (max-width: 980px) {
+    /* This area preserves the existing mobile menu behavior: hide ul until .menu.open */
+    .menu ul {
+        display: none !important;
+        position: absolute;
+        right: 12px;
+        top: calc(100% + 10px);
+        background-color: rgb(241, 231, 218);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+        z-index: 600;
+        width: 320px;
+        max-width: calc(100vw - 32px);
+        list-style: none;
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        transform-origin: top right;
+        transition: opacity 150ms ease, transform 150ms ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .menu.open ul {
+        display: flex !important;
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    .menu ul li a {
+        white-space: normal;
+        text-overflow: clip;
+    }
+}
 
 .banner {
     margin: 20px 60px 10px 60px;
@@ -215,4 +251,294 @@ footer p {
     font-weight: bold;
     color:black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Responsiveness */
+/* --- Responsive menu: hamburger toggle for small screens --- */
+
+.menu {
+    position: relative;
+}
+
+/* hidden on desktop, shown on small screens */
+.menu-toggle {
+    display: none;
+    background: linear-gradient(180deg,#fff 0%, #fffbf5 100%);
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* small animation for opening (keep only non-destructive basics here) */
+.menu ul {
+    transform-origin: top right;
+    transition: opacity 150ms ease, transform 150ms ease;
+    /* keep visible by default on desktop */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* remove global hide/show rules (they will be applied only for small screens) */
+
+/* small-screen behaviour */
+@media (max-width: 860px) {
+    .menu-toggle { display: inline-flex; }
+
+    /* hide the original desktop grid menu by default */
+    .menu ul {
+        display: none !important;
+        position: absolute;
+        right: 12px;
+        top: calc(100% + 10px);
+        background-color: rgb(241, 231, 218);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+        z-index: 600;
+        width: 320px;
+        max-width: calc(100vw - 32px);
+        list-style: none;
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        /* prepare for animation */
+        transform-origin: top right;
+        transition: opacity 150ms ease, transform 150ms ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* menu visible when parent has .open */
+    .menu.open ul {
+        display: flex !important;
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    /* hidden state for mobile when not open */
+    .menu:not(.open) ul {
+        opacity: 0;
+        transform: scale(0.98);
+        pointer-events: none;
+    }
+
+    .menu ul li {
+        margin: 0;
+    }
+
+    .menu ul li a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 8px;
+        width: 100%;
+        color: inherit;
+    }
+
+    /* make the toggle visually anchored inside header */
+    .header-upper .menu-toggle {
+        margin-right: 18px;
+    }
+}
+
+/* Narrow mobile: full width stacked menu */
+@media (max-width: 560px) {
+    .menu ul {
+        right: 8px;
+        left: 8px;
+        top: calc(100% + 8px);
+        width: auto;
+        max-width: calc(100vw - 16px);
+    }
+    .menu-toggle {
+        padding: 10px 12px;
+        border-radius: 10px;
+    }
+}
+
+/* accessibility / focus */
+.menu-toggle:focus {
+    outline: 3px solid rgba(255,122,0,0.28);
+    outline-offset: 2px;
+}
+
+/* Responsive nav (shrink until mobile breakpoint) */
+:root {
+  --nav-mobile-break: 880px; /* single source of truth for when "mobile" menu appears */
+}
+
+/* Desktop / tablet: flexible, non-wrapping nav that smoothly shrinks */
+.menu {
+  position: relative;
+}
+
+.menu ul {
+  display: flex;
+  flex-wrap: nowrap;            /* never wrap to next line */
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 3.2vw, 60px); /* reduce gap as viewport shrinks */
+  list-style: none;
+  padding: 8px clamp(12px, 6vw, 60px);
+  margin: 0 clamp(12px, 5vw, 60px);
+  border-radius: 20px;
+  background-color: rgb(241, 231, 218);
+  box-sizing: border-box;
+}
+
+/* allow each item to shrink but not wrap text; allow ellipsis if needed */
+.menu ul li {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.menu ul li a {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: clamp(8px, 1.6vw, 18px) clamp(10px, 2.4vw, 50px);
+  font-weight: 700; /* bold menu */
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  border-radius: 10px;
+  color: inherit;
+}
+
+/* Hover / focus / active styling for desktop + tablet */
+.menu ul li a:hover,
+.menu ul li a:focus,
+.menu ul li a:active {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  background-color: rgba(255,122,0,0.08);
+  outline: none;
+}
+
+/* keep stable spacing as viewport decreases */
+@media (max-width: 1200px) {
+  .menu ul { gap: clamp(8px, 3.2vw, 40px); padding: 8px 36px; margin: 0 36px; }
+  .menu ul li a { padding-inline: clamp(8px, 2vw, 30px); font-size: 1rem; }
+}
+
+@media (max-width: 988px) {
+  .menu ul { gap: clamp(6px, 3vw, 24px); padding: 6px 20px; margin: 0 12px; }
+  .menu ul li a { padding-inline: clamp(6px, 2vw, 18px); font-size: 0.98rem; }
+}
+
+/* Mobile breakpoint: hide inline menu and enable toggle button */
+@media (max-width: 880px) {
+  .menu-toggle { display: inline-flex; } /* this class must exist or be injected by JS */
+
+  .menu ul {
+    display: none !important;
+    position: absolute;
+    right: 12px;
+    top: calc(100% + 10px);
+    background-color: rgb(241, 231, 218);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    z-index: 600;
+    width: min(380px, calc(100vw - 28px));
+    max-height: 70vh;
+    overflow: auto;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transform-origin: top right;
+    transform: scale(.98);
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+  }
+
+  .menu.open ul {
+    display: flex !important;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  /* Mobile items: allow wrapping and larger tap targets */
+  .menu ul li a {
+    white-space: normal;
+    text-overflow: clip;
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  .menu ul li a:active {
+    transform: none;
+    background-color: rgba(0,0,0,0.04);
+  }
+}
+
+/* Ensure toggle hidden on larger screens */
+.menu-toggle { display: none; }
+
+/* accessibility focus style */
+.menu ul li a:focus-visible {
+  outline: 3px solid rgba(255,122,0,0.22);
+  outline-offset: 2px;
+}
+
+/* Account dropdown (append to end of file) */
+.profile-auth { position: relative; display: inline-flex; align-items: center; gap: 8px; }
+.profile-auth .account-toggle { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 0; cursor: pointer; padding: 6px 8px; border-radius: 8px; }
+.profile-auth .account-toggle:focus { outline: 3px solid rgba(255,122,0,0.18); outline-offset: 3px; }
+.profile-auth .account-toggle .arrow {
+  display: inline-block;
+  width: 12px; height: 12px;
+  transition: transform .18s ease;
+  transform-origin: center;
+  font-size: 12px;
+  line-height: 1;
+}
+/* when open rotate arrow up */
+.profile-auth.open .arrow { transform: rotate(180deg); }
+
+/* dropdown panel */
+.profile-auth .account-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  padding: 8px;
+  z-index: 99999;
+  display: none;
+  box-sizing: border-box;
+}
+
+/* visible when parent has .open */
+.profile-auth.open .account-dropdown { display: block; }
+
+/* drop items */
+.account-dropdown .item {
+  display: block;
+  padding: 10px 12px;
+  color: #111;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.account-dropdown .item:hover,
+.account-dropdown .item:focus { background: rgba(255,122,0,0.08); outline: none; }
+
+/* small help / secondary line */
+.account-dropdown .note { font-size: 0.85rem; color: #666; padding: 6px 12px; }
+
+/* responsive: full width on very small screens */
+@media (max-width: 480px) {
+  .profile-auth .account-dropdown { right: 6px; left: 6px; min-width: auto; }
 }
