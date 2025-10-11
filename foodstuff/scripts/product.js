@@ -598,4 +598,5 @@ function addToCartFromProduct(product, quantity = 1) {
     saveCart(cart);
     updateCartIndicator();
 }
-// ...existing code...
+
+

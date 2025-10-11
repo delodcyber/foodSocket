@@ -24,8 +24,11 @@
 .cart-row-img{width:48px;height:48px;object-fit:cover;border-radius:6px}
 .cart-info{flex:1}
 .cart-remove-btn{background:#f44336;color:#fff;border:none;padding:6px 8px;border-radius:4px;cursor:pointer}
-.cart-clear-btn{margin-top:8px;background:#555;color:#fff;padding:8px 10px;border-radius:6px;border:none;cursor:pointer}
-.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.22);z-index:9998;}
+.cart-clear-btn{background:#555;color:#fff;padding:8px 10px;border-radius:6px;border:none;cursor:pointer}
+.cart-checkout-btn{background:#ff7a00;color:#fff;padding:8px 12px;border-radius:6px;border:none;cursor:pointer}
+.cart-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
+.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.22);z-index:9998}
+.cart-clear-btn:disabled,.cart-checkout-btn:disabled{opacity:0.6;cursor:not-allowed}
 `;
         const s = document.createElement('style');
         s.id = 'site-cart-styles';
@@ -71,15 +74,14 @@
         badge.textContent = total.toString();
     }
 
-    // overlay handlers (kept references to remove later)
+    // overlay listeners refs
     let docClickHandler = null;
     let keydownHandler = null;
 
     function addOverlayListeners(overlay, backdrop) {
-        // small delay so the click that opened the overlay doesn't immediately close it
+        // allow current click to finish
         setTimeout(() => {
             docClickHandler = (evt) => {
-                // if click is outside overlay (and outside indicator), close
                 if (!overlay.contains(evt.target) && !document.querySelector('.cart-indicator')?.contains(evt.target)) {
                     removeOverlay();
                 }
@@ -92,22 +94,13 @@
             document.addEventListener('keydown', keydownHandler);
         }, 0);
 
-        // stop clicks inside overlay from bubbling to document (prevents immediate close)
         overlay.addEventListener('click', (e) => e.stopPropagation());
-        if (backdrop) {
-            backdrop.addEventListener('click', () => removeOverlay());
-        }
+        if (backdrop) backdrop.addEventListener('click', removeOverlay);
     }
 
     function removeOverlayListeners() {
-        if (docClickHandler) {
-            document.removeEventListener('click', docClickHandler);
-            docClickHandler = null;
-        }
-        if (keydownHandler) {
-            document.removeEventListener('keydown', keydownHandler);
-            keydownHandler = null;
-        }
+        if (docClickHandler) { document.removeEventListener('click', docClickHandler); docClickHandler = null; }
+        if (keydownHandler) { document.removeEventListener('keydown', keydownHandler); keydownHandler = null; }
     }
 
     function toggleOverlay() {
@@ -125,7 +118,6 @@
     }
 
     function buildAndShowOverlay() {
-        // add backdrop for visual and to capture clicks
         const backdrop = document.createElement('div');
         backdrop.className = 'cart-backdrop';
         document.body.appendChild(backdrop);
@@ -176,7 +168,9 @@
                 removeBtn.textContent = 'Remove';
                 removeBtn.addEventListener('click', () => {
                     removeFromCart(item.name);
+                    // refresh overlay contents
                     removeOverlay();
+                    buildAndShowOverlay();
                 });
 
                 row.appendChild(img);
@@ -185,14 +179,31 @@
                 overlay.appendChild(row);
             });
 
-            const clear = document.createElement('button');
-            clear.className = 'cart-clear-btn';
-            clear.textContent = 'Clear cart';
-            clear.addEventListener('click', () => {
+            // footer: clear left, checkout right
+            const footer = document.createElement('div');
+            footer.className = 'cart-footer';
+
+            const clearBtn = document.createElement('button');
+            clearBtn.className = 'cart-clear-btn';
+            clearBtn.textContent = 'Clear cart';
+            clearBtn.addEventListener('click', () => {
                 saveCart([]);
                 removeOverlay();
             });
-            overlay.appendChild(clear);
+
+            const checkoutBtn = document.createElement('button');
+            checkoutBtn.className = 'cart-checkout-btn';
+            checkoutBtn.textContent = 'Checkout';
+            checkoutBtn.disabled = !(cart && cart.length > 0);
+            checkoutBtn.addEventListener('click', () => {
+                removeOverlay();
+                // navigate to checkout page (adjust path if needed)
+                window.location.href = 'checkout.html';
+            });
+
+            footer.appendChild(clearBtn);
+            footer.appendChild(checkoutBtn);
+            overlay.appendChild(footer);
         }
 
         document.body.appendChild(overlay);

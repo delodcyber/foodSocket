@@ -160,3 +160,59 @@ ul .sublink:nth-child(4) {
 .product-card p {
     margin: 5px 0px 0px 0px;
 }
+
+
+
+/* Footer Style for all pages */
+footer {
+    display: grid;
+    grid-template-areas: 
+    "contact image"
+    "copyright copyright";
+    grid-template-columns: 2fr 2fr;
+    gap: 10px;
+    padding: 20px 20px 0px 20px;
+    margin-top: 20rem;
+    background-color: rgb(241, 231, 218);
+    justify-items: center;
+    border-radius: 10px;
+}
+
+.contact-us {
+    grid-area: contact;
+    padding: 30px 0px 0px 0px;
+    line-height: 3;
+}
+.contact-us a {
+    display: block;
+}
+.contact-us img {
+    width: 9%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+.contact-us span {
+    padding: 0px 0px 0px 30px;
+    font-size: medium;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.contact-image {
+    grid-area: image;
+}
+.contact-image img {
+    width: 450px;
+    height: 170px;
+    border-radius: 20px;
+    margin: 10px 0px 0px 10px;
+}
+
+footer p {
+    grid-area: copyright;
+    text-align: center;
+    font-size:small;
+    font-weight: bold;
+    color:black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
