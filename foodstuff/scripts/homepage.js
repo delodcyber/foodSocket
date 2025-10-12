@@ -1,6 +1,6 @@
 // Robust responsive menu toggle (breakpoint = 880px)
 document.addEventListener('DOMContentLoaded', () => {
-  const MOBILE_BREAK = 880;
+  const MOBILE_BREAK = 790;
   const menu = document.querySelector('.menu');
   if (!menu) return;
 
@@ -195,3 +195,112 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // accessibility: allow toggle via Enter/Space (button already does)
 });
+
+
+
+// Product Card Display
+(async function() {
+  const container = document.getElementById('productContainer');
+  if (!container) return;
+
+  const files = [
+    'jsons/beans.json',
+    'jsons/garri.json',
+    'jsons/grinded-pepper.json',
+    'jsons/palm-oil.json',
+    'jsons/rice.json',
+    'jsons/spaghetti-pasta.json',
+    'jsons/vegetable-oil.json'
+  ];
+
+  function parsePrice(str) {
+    if (!str || typeof str !== 'string') return Infinity;
+    const m = str.match(/[\d,]+(?:\.\d+)?/);
+    if (!m) return Infinity;
+    return Number(m[0].replace(/,/g, ''));
+  }
+
+  function findArray(obj) {
+    for (const k of Object.keys(obj)) {
+      if (Array.isArray(obj[k])) return obj[k];
+    }
+    return null;
+  }
+
+  async function loadJson(path) {
+    try {
+      const res = await fetch(path, { cache: "no-store" });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } catch (e) {
+      console.warn('Failed to load', path, e);
+      return null;
+    }
+  }
+
+  function cheapestItem(items) {
+    if (!Array.isArray(items) || items.length === 0) return null;
+    let best = null;
+    let bestPrice = Infinity;
+    for (const it of items) {
+      const priceStr = it.kongoPrice || it.price || Object.values(it).find(v => typeof v === 'string' && v.includes('₦')) || '';
+      const p = parsePrice(priceStr);
+      if (p < bestPrice) { bestPrice = p; best = it; }
+    }
+    return best;
+  }
+
+  function resolveImagePath(p) {
+    if (!p || typeof p !== 'string') return 'images/placeholder.png';
+    if (p.startsWith('../')) return p.replace(/^\.\.\//, '');
+    if (p.startsWith('./')) return p.replace(/^\.\//, '');
+    return p;
+  }
+
+  function renderCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    const img = document.createElement('img');
+    img.className = 'product-image';
+    img.alt = product.productName || 'product';
+    img.src = resolveImagePath(product.image || product.img || '');
+
+    const link = document.createElement('a');
+    link.className = 'product-link';
+    link.href = 'product.html' + (product.productName ? '?product=' + encodeURIComponent(product.productName) : '');
+    link.title = product.productName || '';
+    link.appendChild(img);
+
+    const h = document.createElement('h3');
+    const titleLink = document.createElement('a');
+    titleLink.href = link.href;
+    titleLink.textContent = product.productName || 'Untitled';
+    titleLink.className = 'product-title-link';
+    h.appendChild(titleLink);
+
+    const p = document.createElement('p');
+    p.innerHTML = product.kongoPrice || product.kongo_price || product.price || 'Price not set';
+
+    card.appendChild(link);
+    card.appendChild(h);
+    card.appendChild(p);
+    return card;
+  }
+
+  const loads = await Promise.all(files.map(f => loadJson(f)));
+  for (const json of loads) {
+    if (!json) continue;
+    const items = findArray(json);
+    if (!items) continue;
+    const cheap = cheapestItem(items);
+    if (!cheap) continue;
+    container.appendChild(renderCard(cheap));
+  }
+
+  if (!container.children.length) {
+    const note = document.createElement('p');
+    note.textContent = 'No products available.';
+    container.appendChild(note);
+  }
+})();

@@ -23,3 +23,42 @@
     line-height: 1.6;
 }
 
+
+
+/* Mobile Display */
+@media (max-width: 790px) {
+  /* stack text first, image second for mobile */
+  .about-container {
+    grid-template-areas:
+      "text"
+      "image";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 12px;
+    padding: 20px 16px;
+  }
+
+  .about-container > .about-text {
+    grid-area: text;
+    margin: 0;
+    padding: 18px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .about-container > .about-image {
+    grid-area: image;
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about-container > .about-image img {
+    width: 100%;
+    height: 50%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+  }
+}
