@@ -1,42 +1,70 @@
-.faqs-container h1 {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 5rem;
-    background-color: rgb(232, 184, 184);
-    border-radius: 10px;
-    margin: 5rem 10rem 2rem 10rem;
-    padding: 10px;
+.faqs-container {
+  /* central container that scales and keeps content from spilling */
+  max-width: 1200px;
+  margin: clamp(20px, 4vw, 80px) auto;
+  padding: clamp(12px, 2.5vw, 40px);
+  box-sizing: border-box;
 }
-.faqs-section {
-    display: grid;
-    grid-template-areas: "membership order-payment";
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    padding: 10px;
-    margin: 40px 50px 20px 50px;
-}
-.membership {
-    grid-area: membership;
-    display: flex;
-    flex-direction: column;
-}
-.membership h2, .order-payment h2 {
-    text-align: center;
-    font-size: 1.2rem;
-    background-color: rgb(245, 216, 216);
-    border-radius: 10px;
-    padding: 5px;
-    margin: 0rem 10rem 2rem 10rem;
-}
-.order-payment {
-    grid-area: order-payment;
-    display: flex;
-    flex-direction: column;
-}
-.faq-item {
-    padding: 2px 5px 2px 20px;
-    margin: 10px;
-    background-color:rgb(210, 242, 178);
-    border-radius: 20px;
 
+/* fluid, constrained H1 so it shrinks gracefully and stays centered */
+.faqs-container h1 {
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  text-align: center;
+  margin: 0 auto clamp(18px, 3.5vw, 36px);
+  padding: clamp(8px, 1.2vw, 12px) clamp(10px, 3vw, 40px);
+  max-width: 100%;
+  border-radius: 10px;
+  background-color: rgb(232, 184, 184);
+}
+
+/* responsive grid: allow columns to shrink and collapse to one column only at the mobile breakpoint */
+.faqs-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(12px, 2.5vw, 50px);
+  padding: clamp(6px, 1.6vw, 12px);
+  margin: 0 auto;
+}
+
+/* sections use fluid spacing and avoid fixed large side-margins */
+.membership,
+.order-payment {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.8vw, 16px);
+  padding: 0;
+  margin: 0;
+}
+
+/* headings: remove large fixed margins and use padding instead */
+.membership h2,
+.order-payment h2 {
+  text-align: center;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  background-color: rgb(245, 216, 216);
+  border-radius: 10px;
+  padding: clamp(6px, 1.2vw, 12px);
+  margin: 0;
+}
+
+/* FAQ items: fluid padding and readable font size */
+.faq-item {
+  padding: clamp(8px, 1.8vw, 12px);
+  margin: 0;
+  background-color: rgb(210, 242, 178);
+  border-radius: 12px;
+  line-height: 1.4;
+  font-size: clamp(0.95rem, 1.6vw, 1rem);
+}
+
+/* Mobile layout for FAQs (≤ 790px) */
+@media (max-width: 790px) {
+  .faqs-container {
+    margin: 28px 12px;
+    padding: 12px;
+  }
+  .faqs-container h1 { font-size: 1.15rem; margin-bottom: 12px; padding: 10px; }
+  .faqs-section { grid-template-columns: 1fr; gap: 12px; margin: 0; padding: 0; }
+  .membership h2, .order-payment h2 { text-align: left; font-size: 1.05rem; padding: 8px 10px; }
+  .faq-item { padding: 10px; font-size: 1rem; border-radius: 10px; }
 }

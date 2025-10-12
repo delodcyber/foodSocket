@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/homepage.css">
-    <link rel="stylesheet" href="styles/about.css">
     <title>Homepage</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,8 +39,17 @@
             </div>
         </div>
         <nav class="menu" aria-label="Main navigation">
-        <ul>
-            <li><a class="sublink" href="index.html" aria-current="page">Home</a></li>
+        <!-- keep a visible toggle in DOM so mobile button never disappears -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav-list" aria-label="Toggle menu">
+            <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true" focusable="false">
+            <rect width="22" height="2" y="0" rx="1" fill="#222"></rect>
+            <rect width="22" height="2" y="7" rx="1" fill="#222"></rect>
+            <rect width="22" height="2" y="14" rx="1" fill="#222"></rect>
+            </svg>
+        </button>
+
+        <ul id="main-nav-list">
+            <li><a class="sublink" href="index.html">Home</a></li>
             <li><a class="sublink" href="product.html">Products</a></li>
             <li><a class="sublink" href="faqs.html">FAQs</a></li>
             <li><a class="sublink" href="about.html">About Us</a></li>
@@ -52,44 +60,13 @@
         <div class="banner">
             <img src="images/bannerhome.jpeg" alt="Homepage_Banner" class="banner_image">
         </div>
+
+        <!-- product-slide: render cheapest product per JSON category with clickable image -->
         <div class="product-slide">
-            <h2>Available Products</h2>
-            <div class="product-container">
-                <div class="product-card">
-                    <img src="images/rice.jpg" alt="Product 1" class="product-image">
-                    <h3>Rice</h3>
-                    <p>From &#8358;2,300</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/beans.jpg" alt="Product 2" class="product-image">
-                    <h3>Beans</h3>
-                    <p>From &#8358;66,000/bag</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/gaari.jpg" alt="Product 3" class="product-image">
-                    <h3>Gaari</h3>
-                    <p>From &#8358;36,000/bag</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/palm-oil.jpg" alt="Product 4" class="product-image">
-                    <h3>Palm Oil</h3>
-                    <p>From &#8358;2,500/keg</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/vegetable-oil.jpg" alt="Product 5" class="product-image">
-                    <h3>Vegetable Oil</h3>
-                    <p>From &#8358;2,500/bag</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/pasta.webp" alt="Product 6" class="product-image">
-                    <h3>Spaghetti/Pasta</h3>
-                    <p>From &#8358;1,200</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/grinded-pepper.jpeg" alt="Product 7" class="product-image">
-                    <h3>Grinded Pepper</h3>
-                    <p>From &#8358;2,500/bag</p>
-            </div>
+          <h2>Available Products (cheapest from each category)</h2>
+          <div class="product-container" id="productContainer">
+            <!-- cheapest product cards will be injected here -->
+          </div>
         </div>
     </main>
     <footer>
@@ -118,6 +95,6 @@
         <p>&copy; 2025 FoodSocket. All rights reserved.</p>
     </footer>
     <script src="scripts/cart.js"></script>
-    <script src="scripts/homepage1.js"></script>
+    <script src="scripts/homepage.js"></script>
 </body>
 </html>

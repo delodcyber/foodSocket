@@ -16,7 +16,7 @@ a {
     gap: 10px;
     margin: 20px 0px;
     border-radius: 10px;
-    height: 120px;
+    height: 125px;
     background-color: rgb(241, 231, 218);
 }
 .header-upper > .company {
@@ -48,7 +48,7 @@ a {
     padding: 10px 20px;
 }
 .socialmedia {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 .profile-auth {
     display: inline-block;
@@ -61,7 +61,7 @@ a {
 .icon-img {
     width: 30px;
     height: 30px;
-    padding: 0px 0px 0px 25px;
+    margin: 0px 0px 0px 25px;
 }
 .icon-img:hover {
     transform: scale(1.5);
@@ -74,53 +74,84 @@ a {
 }
 
 
-.menu ul {
-    display: grid;
-    grid-template-areas: "one two three four";
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    list-style: none;
-    padding: 5px 150px 5px 80px;
-    border-block: 4px bisque solid;
-    background-color: rgb(241, 231, 218);
-    margin: 0px 60px 0px 60px;
-    border-radius: 20px;
-    justify-items: center;
+/* let each menu item shrink but not wrap its text */
+.menu ul li {
+    flex: 0 1 auto;
+    min-width: 0; /* allow text-overflow on children */
 }
 
-ul li a {
-    background: none;
-    border: none;
-    padding: 10px 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: larger;
+.menu ul li a {
+    display: inline-block;
+    padding: 10px clamp(8px, 2.2vw, 50px); /* padding reduces with viewport */
+    white-space: nowrap;    /* prevent "About Us" from breaking */
+    overflow: hidden;
+    text-overflow: ellipsis; /* if cramped, truncate with ellipsis */
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
     font-weight: 700;
-    cursor: pointer;
-}
-ul li a:hover {
-    color: rgb(198, 43, 43);
-    background-color: rgb(85, 225, 225);
-    border-radius: 20px;
-    transition: 0.5s;
-
-}
-ul .sublink:nth-child(1) {
-    grid-area: one;
-}
-ul .sublink:nth-child(2) {
-    grid-area: two;
-}
-ul .sublink:nth-child(3) {
-    grid-area: three;
-}
-ul .sublink:nth-child(4) {
-    grid-area: four;
 }
 
+/* ---------- Mobile (<= 790px) ---------- */
+/* MOBILE breakpoint is exactly <=790px per your request */
+@media (max-width: 790px) {
+    /* This hides the horizontal menu and turns it into a vertical popup controlled by .menu.open */
+    .menu ul {
+        display: none !important;
+        position: absolute;
+        right: 12px;
+        top: calc(100% + 10px);
+        background-color: rgb(241, 231, 218);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+        z-index: 600;
+
+        /* MOBILE width: change these two values to control mobile menu width */
+        width: 320px;                      /* fixed width on larger phones */
+        max-width: calc(100vw - 32px);     /* responsive cap, keeps it inside viewport */
+
+        list-style: none;
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        transform-origin: top right;
+        transition: opacity 150ms ease, transform 150ms ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* When the menu container has .open (e.g., toggled by JS), show it */
+    .menu.open ul {
+        display: flex !important;
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    /* Mobile: allow link text to wrap to multiple lines */
+    .menu ul li a {
+        white-space: normal;
+        text-overflow: clip;
+    }
+}
+
+/* ---------- Explicit Desktop rule (>= 791px) ---------- */
+/* Ensures desktop layout is used at 791px and above (keeps just two breakpoints). */
+@media (min-width: 791px) {
+    .menu ul {
+        display: flex;
+        gap: clamp(12px, 4vw, 90px);
+        padding: 8px clamp(12px, 6vw, 60px);
+        margin: 0 clamp(12px, 5vw, 60px);
+    }
+    .menu ul li a {
+        white-space: nowrap;
+    }
+}
 
 
 .banner {
-    margin: 20px 60px 10px 60px;
+    margin: 20px 60px 50px 60px;
     text-align: center;
 }
 .banner img {
@@ -159,4 +190,423 @@ ul .sublink:nth-child(4) {
 }
 .product-card p {
     margin: 5px 0px 0px 0px;
+}
+
+
+
+/* Footer Style for all pages */
+footer {
+    display: grid;
+    grid-template-areas: 
+    "contact image"
+    "copyright copyright";
+    grid-template-columns: 2fr 2fr;
+    gap: 10px;
+    padding: 20px 20px 0px 20px;
+    margin-top: 20rem;
+    background-color: rgb(241, 231, 218);
+    justify-items: center;
+    border-radius: 10px;
+}
+
+/* Responsive footer: content (images + text) gracefully shrink without spilling */
+footer {
+  display: grid;
+  grid-template-columns: 1fr min(420px, 40%);
+  gap: clamp(12px, 2.5vw, 28px);
+  align-items: end;
+  padding: clamp(16px, 2.4vw, 28px);
+  background-color: rgb(241, 231, 218);
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-top: 100px;
+}
+
+/* contact column */
+.contact-us {
+  grid-area: auto;
+  padding: 0;
+}
+
+/* link rows inside contact column: flexible and wrap when needed */
+.contact-us a {
+  display: flex;
+  gap: clamp(8px, 2vw, 20px);
+  align-items: center;
+  margin-bottom: clamp(8px, 1.4vw, 12px);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* responsive images used in contact and footer */
+.contact-us img,
+.contact-image img,
+.contact-img {
+  width: clamp(40px, 12vw, 20px); /* image shrinks with viewport but not too small */
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  flex: 0 0 auto;
+}
+
+/* text next to images scales down */
+.contact-us span {
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  font-weight: 500;
+}
+
+/* main contact-image column scales responsively */
+.contact-image {
+  display: flex;
+  justify-content: left;
+}
+.contact-image img {
+  width: 100%;
+  max-width: min(280px, 100%);
+  height: auto;
+  border-radius: 12px;
+}
+
+/* copyright row spans full width and keeps readable size */
+footer p {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+  margin: 0;
+  color: #000;
+  font-weight: 600;
+}
+
+/* stacked for smaller screens: contact above image */
+@media (max-width: 880px) {
+  footer {
+    grid-template-columns: 1fr;
+    gap: clamp(10px, 3vw, 18px);
+    padding: clamp(14px, 3vw, 20px);
+  }
+  .contact-image { order: 1; }
+  .contact-us { order: 2; }
+  footer p { margin-top: 0px; grid-row: 2 / 3; }
+}
+
+/* very small screens: tighten spacing and increase tap target */
+@media (max-width: 480px) {
+  .contact-us a { gap: 10px; }
+  .contact-us span { font-size: 0.95rem; }
+  .contact-us img, .contact-image img { width: clamp(48px, 22vw, 140px); }
+}
+
+
+
+
+/* Responsiveness */
+/* --- Responsive menu: hamburger toggle for small screens --- */
+
+.menu {
+    position: relative;
+}
+
+/* hidden on desktop, shown on small screens */
+.menu-toggle {
+    display: none;
+    background: linear-gradient(180deg,#fff 0%, #fffbf5 100%);
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* small animation for opening (keep only non-destructive basics here) */
+.menu ul {
+    transform-origin: top right;
+    /* keep visible by default on desktop */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* remove global hide/show rules (they will be applied only for small screens) */
+
+/* small-screen behaviour (adjusted breakpoint to avoid overlap with desktop rules) */
+@media (max-width: 790px) {
+    .menu-toggle { display: inline-flex; }
+
+    /* hide the original desktop grid menu by default */
+    .menu ul {
+        display: none !important;
+        position: absolute;
+        right: 12px;
+        top: calc(100% + 10px);
+        background-color: rgb(241, 231, 218);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+        z-index: 600;
+        width: 320px;
+        max-width: calc(100vw - 32px);
+        list-style: none;
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        transform-origin: top right;
+        transition: opacity 150ms ease, transform 150ms ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* menu visible when parent has .open */
+    .menu.open ul {
+        display: flex !important;
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    /* hidden state for mobile when not open */
+    .menu:not(.open) ul {
+        opacity: 0;
+        transform: scale(0.98);
+        pointer-events: none;
+    }
+
+    .menu ul li {
+        margin: 0;
+    }
+
+    .menu ul li a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 8px;
+        width: 100%;
+        color: inherit;
+    }
+
+    /* make the toggle visually anchored inside header */
+    .header-upper .menu-toggle {
+        margin-right: 18px;
+    }
+}
+
+/* Narrow mobile: full width stacked menu */
+@media (max-width: 560px) {
+    .menu ul {
+        right: 8px;
+        left: 8px;
+        top: calc(100% + 8px);
+        width: auto;
+        max-width: calc(100vw - 16px);
+    }
+    .menu-toggle {
+        padding: 10px 12px;
+        border-radius: 10px;
+    }
+}
+
+/* accessibility / focus */
+.menu-toggle:focus {
+    outline: 3px solid rgba(255,122,0,0.28);
+    outline-offset: 2px;
+}
+
+/* Responsive nav (shrink until mobile breakpoint) */
+:root {
+  --nav-mobile-break: 791px; /* single source of truth for when "mobile" menu appears */
+}
+
+/* NAV - simplified two-state (desktop / mobile) behavior
+   - Desktop: inline non-wrapping flex menu that shrinks (no disappearance).
+   - Mobile: hamburger toggle visible, inline menu hidden until .menu.open.
+   - All hover / focus / active states included. */
+:root{
+  --nav-break: 791px; /* change once if you want a different breakpoint */
+  --nav-bg: rgb(241, 231, 218);
+  --accent: #ff7a00;
+}
+
+/* container */
+.menu {
+  position: relative;
+  z-index: 10;
+}
+
+/* Desktop / larger tablets (>= var(--nav-break)) - visible inline menu */
+.menu ul {
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 3.2vw, 60px);
+  list-style: none;
+  padding: 0px clamp(12px, 6vw, 60px);
+  margin: 0 clamp(12px, 5vw, 60px);
+  background: var(--nav-bg);
+  border-radius: 20px;
+  box-sizing: border-box;
+  transition: gap 160ms ease, padding 160ms ease;
+}
+
+/* items: allow shrink/ellipsis but never wrap */
+.menu ul li {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.menu ul li a {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: clamp(8px, 1.6vw, 14px) clamp(10px, 2.4vw, 40px);
+  font-weight: 700;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  border-radius: 10px;
+  color: inherit;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* desktop hover / focus / active */
+.menu ul li a:hover,
+.menu ul li a:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(38, 24, 235, 0.12);
+  background-color: rgba(38, 24, 235, 0.2);
+  outline: rgb(144, 30, 224);
+  border-radius: 30px;
+}
+.menu ul li a:active {
+  transform: translateY(0);
+  background-color: rgba(19, 109, 117, 0.2);
+}
+
+/* hamburger toggle (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  appearance: none;
+  border: 0;
+  background: linear-gradient(180deg,#fff 0%, #fff8f0 100%);
+  border-radius: 10px;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* toggle hover / active */
+.menu-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+.menu-toggle:active { transform: translateY(0); }
+
+/* ACCESSIBILITY focus ring */
+.menu-toggle:focus-visible,
+.menu ul li a:focus-visible {
+  outline: 3px solid rgba(255,122,0,0.22);
+  outline-offset: 3px;
+}
+
+/* MOBILE: <= breakpoint - hide inline menu until opened and show toggle */
+@media (max-width: 790px) {
+  .menu-toggle { display: inline-flex; position: relative; z-index: 99999; }
+
+  .menu ul {
+    display: none !important;
+    position: absolute;
+    right: 12px;
+    top: calc(100% + 10px);
+    width: min(380px, calc(100vw - 28px));
+    max-height: 70vh;
+    overflow: auto;
+    background: var(--nav-bg);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transform-origin: top right;
+    transform: scale(.98);
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+  }
+
+  .menu.open ul {
+    display: flex !important;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  /* mobile item styles: larger touch targets, allow wrapping */
+  .menu ul li a {
+    white-space: normal;
+    text-overflow: clip;
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  /* provide active feedback for touch */
+  .menu ul li a:active {
+    background-color: rgba(0,0,0,0.04);
+    transform: none;
+  }
+}
+
+/* Account dropdown in the Header (appended to end of file) */
+.profile-auth { position: relative; display: inline-flex; align-items: center; gap: 8px; }
+.profile-auth .account-toggle { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 0; cursor: pointer; padding: 6px 8px; border-radius: 8px; }
+.profile-auth .account-toggle:focus { outline: 3px solid rgba(255,122,0,0.18); outline-offset: 3px; }
+.profile-auth .account-toggle .arrow {
+  display: inline-block;
+  width: 12px; height: 12px;
+  transition: transform .18s ease;
+  transform-origin: center;
+  font-size: 12px;
+  line-height: 1;
+}
+/* when open rotate arrow up */
+.profile-auth.open .arrow { transform: rotate(180deg); }
+
+/* dropdown panel */
+.profile-auth .account-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  padding: 8px;
+  z-index: 99999;
+  display: none;
+  box-sizing: border-box;
+}
+
+/* visible when parent has .open */
+.profile-auth.open .account-dropdown { display: block; }
+
+/* drop items */
+.account-dropdown .item {
+  display: block;
+  padding: 10px 12px;
+  color: #111;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.account-dropdown .item:hover,
+.account-dropdown .item:focus { background: rgba(255,122,0,0.08); outline: none; }
+
+/* small help / secondary line */
+.account-dropdown .note { font-size: 0.85rem; color: #666; padding: 6px 12px; }
+
+/* responsive: full width on very small screens */
+@media (max-width: 480px) {
+  .profile-auth .account-dropdown { right: 6px; left: 6px; min-width: auto; }
 }
