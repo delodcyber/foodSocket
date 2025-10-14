@@ -164,4 +164,4 @@ All images and content © 2025 FoodSocket. All rights reserved.
 
 
 ## Credits
-** Developed by John Adeloye and contributors.*
+*Developed by John Adeloye and contributors.*
