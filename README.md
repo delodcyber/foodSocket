@@ -141,6 +141,7 @@ Example (`beans.json`):
 
 - The homepage and product pages automatically select and display the cheapest product from each category.
 
+---
 
 ## Styling
 - *homepage.css:* Main site styles, header, navigation, footer, and responsive layout.
@@ -152,12 +153,14 @@ Example (`beans.json`):
 - *Product Cards:* Responsive grid layout, images scale on mobile.
 - *Footer:* Contact info and copyright always pinned to bottom.
 
+---
 
 ## Contact
 *Address:* https://www.linkedin.com/in/adeloye007/
 
 *Email:* john.adeloye@yahoo.com
 
+---
 
 ## License
 This project is licensed by MIT and not copyright available.
