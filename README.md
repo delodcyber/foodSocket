@@ -155,6 +155,7 @@ Example (`beans.json`):
 
 ## Contact
 *Address:* https://www.linkedin.com/in/adeloye007/
+
 *Email:* john.adeloye@yahoo.com
 
 
