@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // arrow
   const arrow = document.createElement('span');
   arrow.className = 'arrow';
-  arrow.innerHTML = '&#9662;'; // down-pointing small triangle
+  arrow.innerHTML = '&#x25BC;'; // down-pointing small triangle
   toggle.appendChild(arrow);
 
   // create dropdown panel
